@@ -1,6 +1,7 @@
 package com.pp.productsApp;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,11 +17,11 @@ public class ProductController {
     }
 
     @GetMapping("/lista")
-    public String list(@RequestParam String category) {
+    public String list(@RequestParam String category, Model model) {
 
         List<Product> productList = productRepository.findByCategory(category);
-
         if (!productList.isEmpty()) {
+            model.addAttribute("productList", productList);
             return "productList";
         } else {
             return "error";

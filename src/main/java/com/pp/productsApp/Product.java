@@ -1,4 +1,4 @@
-package com.pp.productsApp.;
+package com.pp.productsApp;
 
 public class Product {
     private String name;
@@ -33,5 +33,13 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public StringBuilder getInfo() {
+        StringBuilder productDetails = new StringBuilder();
+        productDetails.append(this.name).append(" ")
+                .append(this.price).append(" ").append(this.category);
+
+        return productDetails;
     }
 }

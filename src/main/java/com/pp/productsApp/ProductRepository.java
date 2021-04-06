@@ -11,18 +11,24 @@ public class ProductRepository {
 
     public ProductRepository() {
         products = new ArrayList<>();
-        products.add(new Product("mleko", 25, "domowe"));
+        products.add(new Product("mleko", 10, "spozywcze"));
+        products.add(new Product("chleb", 5, "spozywcze"));
         products.add(new Product("patelnia", 100, "domowe"));
+        products.add(new Product("garnek", 125, "domowe"));
     }
 
 
     public List<Product> findByCategory(String category) {
-        List<Product> products = new ArrayList<>();
+        List<Product> filteredProductsArrayList = new ArrayList<>();
         for (Product product : products) {
             if (product.getCategory().equals(category)) {
-                products.add(product);
+                filteredProductsArrayList.add(product);
             }
         }
+        return filteredProductsArrayList;
+    }
+
+    public List<Product> getAll() {
         return products;
     }
 }

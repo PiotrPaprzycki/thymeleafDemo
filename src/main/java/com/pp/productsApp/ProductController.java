@@ -16,15 +16,22 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @GetMapping("/lista")
-    public String list(@RequestParam String category, Model model) {
+    @GetMapping("/list")
+    public Object list(@RequestParam(required = false) String category, Model model) {
+
+        if (category == null || category.equals("")) {
+            List<Product> productList = productRepository.getAll();
+            model.addAttribute("productList", productList);
+            return "productList";
+        }
 
         List<Product> productList = productRepository.findByCategory(category);
+
         if (!productList.isEmpty()) {
             model.addAttribute("productList", productList);
             return "productList";
         } else {
-            return "error";
+            return "redirect:error";
         }
     }
 }

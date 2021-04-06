@@ -18,9 +18,9 @@ public class ProductController {
     @GetMapping("/lista")
     public String list(@RequestParam String category) {
 
-        List<Product> products = productRepository.findByCategory(category);
+        List<Product> productList = productRepository.findByCategory(category);
 
-        if (products.size() != 0) {
+        if (!productList.isEmpty()) {
             return "productList";
         } else {
             return "error";

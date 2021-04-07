@@ -3,6 +3,7 @@ package com.pp.productsapp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -14,6 +15,12 @@ public class ProductController {
 
     public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    @GetMapping("/index")
+    public String index(Model model) {
+        model.addAttribute("product", new Product());
+        return "index";
     }
 
     @GetMapping("/list")
@@ -39,5 +46,11 @@ public class ProductController {
         } else {
             return "redirect:error";
         }
+    }
+
+    @PostMapping("/add")
+    public String add(Product product) {
+        productRepository.addProduct(product);
+        return "redirect:index";
     }
 }

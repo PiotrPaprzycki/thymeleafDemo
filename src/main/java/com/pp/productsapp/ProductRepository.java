@@ -48,4 +48,8 @@ public class ProductRepository {
             return price;
         }
     }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
 }

@@ -1,6 +1,5 @@
-package com.pp.productsApp;
+package com.pp.productsapp;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import static org.springframework.boot.SpringApplication.*;

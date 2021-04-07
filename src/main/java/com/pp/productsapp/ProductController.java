@@ -1,4 +1,4 @@
-package com.pp.productsApp;
+package com.pp.productsapp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +20,11 @@ public class ProductController {
     public Object list(@RequestParam(required = false) String category, Model model) {
 
         if (category == null || category.equals("")) {
+            int sumPrice = 0;
             List<Product> productList = productRepository.getAll();
+            sumPrice = productRepository.getPrice(category);
             model.addAttribute("productList", productList);
+            model.addAttribute("price", sumPrice);
             return "productList";
         }
 

@@ -1,4 +1,4 @@
-package com.pp.productsApp;
+package com.pp.productsapp;
 
 import org.springframework.stereotype.Repository;
 
@@ -30,5 +30,22 @@ public class ProductRepository {
 
     public List<Product> getAll() {
         return products;
+    }
+
+    public int getPrice(String category) {
+        int price = 0;
+        if (category != null) {
+            for (Product product : products) {
+                if (product.getCategory().equals(category)) {
+                    price += product.getPrice();
+                }
+            }
+            return price;
+        } else {
+            for (Product product : products) {
+                price += product.getPrice();
+            }
+            return price;
+        }
     }
 }

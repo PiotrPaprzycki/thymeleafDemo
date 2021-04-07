@@ -31,7 +31,10 @@ public class ProductController {
         List<Product> productList = productRepository.findByCategory(category);
 
         if (!productList.isEmpty()) {
+            int sumPrice = 0;
             model.addAttribute("productList", productList);
+            sumPrice = productRepository.getPrice(category);
+            model.addAttribute("price", sumPrice);
             return "productList";
         } else {
             return "redirect:error";

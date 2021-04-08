@@ -7,11 +7,11 @@
 </head>
 <body>
 <div class="links">
-<a href="list">Wszystkie produkty</a> <br/>
-<a href="list?category=domowe">Produkty z kategori domowe</a> <br/>
-<a href="list?category=spozywcze">Produkty z kategori spozywcze</a><br/>
+<a th:href="@{list}">Wszystkie produkty</a> <br/>
+<a th:href="@{list?category=domowe}">Produkty z kategori domowe</a> <br/>
+<a th:href="@{list?category=spozywcze}">Produkty z kategori spozywcze</a><br/>
 
-    <form action="/add" method="post" th:object="${product}">
+    <form action="#" th:action="@{/add}" method="post" th:object="${product}">
 
     <input type="text" placeholder="Product name" th:field="*{name}" />
     <input type="text" placeholder="Price" th:field="*{price}" />

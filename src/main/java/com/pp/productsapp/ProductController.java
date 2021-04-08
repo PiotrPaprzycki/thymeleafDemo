@@ -11,13 +11,13 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("product", new Product());
         return "index";
@@ -29,7 +29,9 @@ public class ProductController {
         if (category == null || category.equals("")) {
             int sumPrice = 0;
             List<Product> productList = productRepository.getAll();
-            sumPrice = productRepository.getPrice(category);
+            for (Product product : productList) {
+                sumPrice += product.getPrice();
+            }
             model.addAttribute("productList", productList);
             model.addAttribute("price", sumPrice);
             return "productList";
@@ -51,6 +53,6 @@ public class ProductController {
     @PostMapping("/add")
     public String add(Product product) {
         productRepository.addProduct(product);
-        return "redirect:index";
+        return "index";
     }
 }
